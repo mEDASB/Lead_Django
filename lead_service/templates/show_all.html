@@ -1,0 +1,76 @@
+
+
+{% extends "main.html" %} 
+
+{% load static %}
+
+{% block Content %}
+
+<section id="hero" class="hero section dark-background">
+
+    <img src="{% static 'img/background.jpg' %}" alt="" data-aos="fade-in" class="">
+
+    <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+
+        <table class="table align-middle mb-0 bg-white">
+            <thead class="bg-light">
+                <tr>
+                <th>Name</th>
+                <th>phone</th>
+                <th>Status</th>
+                <th>Source</th>
+                <th>Note</th>
+                <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if count > 0 %}
+                    {% for l in leads %}
+                        <tr>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                <div class="ms-3">
+                                    <p class="fw-bold mb-1">{{l.name}}</p>
+                                    <p class="text-muted mb-0">{{l.email}}</p>
+                                </div>
+                                </div>
+                            </td>
+
+                            <td>
+                                <p class="fw-normal mb-1">{{l.phone}}</p>
+                            </td>
+
+                            <td>
+                                <p class="fw-normal mb-1">{{l.Status}}</p>
+                            </td>
+
+                            <td><p class="fw-normal mb-1">{{l.Source}}</p></td>
+                            <td><p class="fw-normal mb-1">{{l.note}}</p></td>
+                            
+                            <td>
+                                <ul class="nav nav-underline">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{% url 'edit_lead' l.id %}">UPDATE</a>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="6" class="text-center">
+                            <p class="fw-bold mb-1">No leads found</p>
+                            <p class="text-muted mb-0">Please add leads to see them here.</p>               
+                
+                        </td>
+                    </tr>
+                {% endif %}
+            </tbody>
+            </table>
+    
+    </div>
+
+</section>
+ 
+{% endblock Content %}

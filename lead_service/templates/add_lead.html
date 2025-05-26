@@ -1,0 +1,32 @@
+
+
+{% extends "main.html" %} 
+
+{% load static %}
+{% load crispy_forms_tags %}
+{% block Content %}
+
+
+
+<section id="hero" class="hero section dark-background">
+
+    <img src="{% static 'img/background.jpg' %}" alt="" data-aos="fade-in" class="">
+
+    <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <h1 class="text-center">Edit Lead</h1>  
+        <form method="POST" action="{% url 'add_lead' %}">
+            {% csrf_token %}
+            {{ lead_form|crispy }}
+
+
+            <button type="submit" >Add Lead</button>
+
+
+        </form>
+    
+    </div>
+
+</section>
+ 
+{% endblock Content %}
